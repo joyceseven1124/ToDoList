@@ -1,0 +1,53 @@
+.todo_list_app{
+    width: 100%;
+    display: inline-grid;
+    justify-content: center;
+}
+
+.todo_list_content{
+    width: 800px;
+}
+
+.to_do_content{
+    width: 300px;
+    margin-top: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+.to_do_input{
+   height: 30px;
+   width: 200px;
+   margin-right: 20px;
+   box-sizing: border-box;
+}
+
+.to_do_send{
+    height: 35px;
+}
+
+.all_list{
+    padding-left: 0px;
+}
+
+:global(.to_do_message){
+    width: 300px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+:global(.to_do_word){
+    display: inline-block;
+    width: 200px;
+    margin-right: 20px;
+    text-align: left;
+}
+
+.button{
+    height: 30px;
+    width: 100px;
+    margin: 40px auto;
+}
