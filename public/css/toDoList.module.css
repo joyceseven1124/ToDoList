@@ -6,6 +6,9 @@
 
 .todo_list_content{
     width: 800px;
+    display: grid;
+    justify-content: center;
+    margin: 30px auto;
 }
 
 .to_do_content{

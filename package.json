@@ -7,9 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean-build-folder && webpack build",
     "start": "webpack serve --open",
-    "clean-build-folder": "rimraf ./build/*",
-    "ts-build": "tsc",
-    "ts-build:watch": "tsc -w"
+    "clean-build-folder": "rimraf ./build/*"
   },
   "keywords": [],
   "author": "",
@@ -35,6 +33,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "firebase": "^9.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.2"

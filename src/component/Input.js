@@ -1,19 +1,22 @@
-import React, { useContext, useState } from "react";
-import { ContextStore } from "../page/toDoListPage";
+import React, { useState } from "react";
 import styles from "/public/css/toDoList.module.css";
+import db from "../firebase";
+import { addDoc, collection } from "firebase/firestore";
 
-function handleAddClick(nweMsg, dispatch, setMsg) {
-  const anEvent = { type: "ADD", newEvent: nweMsg };
-  return (e) => {
-    setMsg("");
-    dispatch(anEvent);
-  };
+async function writeToDoList(newMsg, arrayMessage, setArrayMessage) {
+  let newArrayMessage = [...arrayMessage];
+  const docData = { item: newMsg };
+  let docRef = await addDoc(collection(db.firestore, "toDoList"), docData);
+  let result = { [docRef.id]: newMsg };
+  newArrayMessage.push(result);
+  setArrayMessage(newArrayMessage);
 }
 
-export default function Input() {
+export default function Input(props) {
+  const setArrayMessage = props.set.setDataValue;
+  const arrayMessage = props.msgArray;
   const [msg, setMsg] = useState("");
-  const { appReducer } = useContext(ContextStore);
-  const dispatch = appReducer[1];
+
   return (
     <div className={styles.to_do_content}>
       <input
@@ -23,7 +26,10 @@ export default function Input() {
       ></input>
       <button
         className={styles.to_do_send}
-        onClick={handleAddClick(msg, dispatch, setMsg)}
+        onClick={(e) => {
+          writeToDoList(msg, arrayMessage, setArrayMessage);
+          setMsg("");
+        }}
       >
         {"新增紀錄"}
       </button>

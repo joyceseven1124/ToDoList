@@ -1,20 +1,26 @@
-import React, { useContext } from "react";
-import { ContextStore } from "../page/toDoListPage";
-import styles from "/public/css/toDoList.module.css";
-
-function handleDelEvent(delMsg, dispatch) {
-  return (e) => dispatch({ type: "DEL", delMsg: delMsg });
-}
+import React from "react";
+import db from "../firebase";
 
 export default function Message(props) {
-  const { appReducer } = useContext(ContextStore);
-  const dispatch = appReducer[1];
+  const setValue = props.set.setDataValue;
+  const id = props.id;
+  const msgArray = props.msgArray;
+
   return (
-    <div className="to_do_message">
-      <div className="to_do_word">{props.msg}</div>
+    <div className="to_do_message" id={id}>
+      <div className="to_do_word" id={id}>
+        {props.msg}
+      </div>
       <button
         className="to_do_del_button"
-        onClick={handleDelEvent(props.msg, dispatch)}
+        id={id}
+        onClick={() => {
+          let newDataValueArray = msgArray.filter(
+            (element, index) => Object.keys(element)[0] !== id[0]
+          );
+          setValue(newDataValueArray);
+          db.deleteToDocument(id[0]);
+        }}
       >
         {"刪除"}
       </button>

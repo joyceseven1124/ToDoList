@@ -47,6 +47,9 @@ html,body{
 
 .toDoList-module__todo_list_content___dsIh{
     width: 800px;
+    display: grid;
+    justify-content: center;
+    margin: 30px auto;
 }
 
 .toDoList-module__to_do_content__gVxC2{
